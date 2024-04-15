@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-     <h1 className="bg-orange-400 text-green-400 outline-white">ReactBlogX</h1>
+     <h1 className={`bg-orange-400 text-black outline-white flex justify-center`}>ReactBlogX</h1>
     </>
   )
 }
