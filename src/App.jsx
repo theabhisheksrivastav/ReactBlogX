@@ -6,6 +6,7 @@ import './App.css'
 import Header from './components/Header.jsx'
 import FixedFooter from './components/FixedFooter.jsx'
 import { Outlet } from 'react-router-dom'
+import { Spinner } from 'flowbite-react'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -27,14 +28,20 @@ function App() {
   
 
 
-  return !loading && (
-    <div className="App dark:bg-gray-800">
+  return !loading ? (
+    <div className=" dark:bg-gray-800">
       <header className="App-header">
         <Header />
         <Outlet />
         <FixedFooter />
       </header>
     </div>
+  ) : (
+    <div className="flex items-center justify-center h-screen dark:bg-gray-800">
+    <div className='text-center'>
+        <Spinner size="xl" />
+    </div>
+</div>
   )
 }
 
