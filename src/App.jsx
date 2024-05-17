@@ -36,12 +36,11 @@ function App() {
         <FixedFooter />
       </header>
     </div>
-  ) : (
-    <div className="flex items-center justify-center h-screen dark:bg-gray-800">
-    <div className='text-center'>
+  )
+  : (
+    <div className="flex items-center justify-center h-screen text-center dark:bg-gray-800">
         <Spinner size="xl" />
     </div>
-</div>
   )
 }
 

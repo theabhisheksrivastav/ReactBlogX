@@ -1,30 +1,35 @@
 import { Button, Avatar, Dropdown, Navbar, DarkThemeToggle, Flowbite } from "flowbite-react";
 import { NavLink, Link } from "react-router-dom";
-
-
-const loggedIn = false;
+import { useEffect, useState } from "react";
 
 
 function Header() {
+  const loggedIn = true;
+  const [data, setData] = useState([])
+    useEffect(() => {
+        fetch("https://api.github.com/users/theabhisheksrivastav")
+    .then(response => response.json())
+    .then(data => setData(data))
+    }, [])
   return (
     <Flowbite>
-    <Navbar fluid rounded>
+    <Navbar fluid >
       <Navbar.Brand href={import.meta.env.VITE_DOMAIN}>
-        <img src="/symbol.png" className="mr-3 h-6 sm:h-9" alt="ReactXBlog" />
+        <img src="/symbol.png" className="min-w-6 min-h-10 mr-3 h-6 sm:h-9" alt="ReactXBlog" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white"></span>
       </Navbar.Brand>
       <div className="flex md:order-2">
-      <DarkThemeToggle />
+      <DarkThemeToggle className=" mr-2" />
         {loggedIn ? (<Dropdown
           arrowIcon={false}
           inline
           label={
-            <Avatar img="/pic.png" rounded status="away" statusPosition="bottom-right" />
+            <Avatar img={data.avatar_url} rounded status="away" statusPosition="bottom-right" />
           }
         >
           <Dropdown.Header>
-            <span className="block text-sm">Abhishek Srivastav</span>
-            <span className="block truncate text-sm font-medium">abhisheksrivastav.sa@gmail.com</span>
+            <span className="block text-sm">{data.name}</span>
+            <span className="block truncate text-sm font-medium">{data.login}</span>
           </Dropdown.Header>
           <Dropdown.Item>Dashboard</Dropdown.Item>
           <Dropdown.Item>Settings</Dropdown.Item>
