@@ -1,10 +1,10 @@
 import { Button, Avatar, Dropdown, Navbar, DarkThemeToggle, Flowbite } from "flowbite-react";
 import { NavLink, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { authService } from "../appwrite/auth.service.js";
 
 
 function Header() {
-  const loggedIn = true;
   const [data, setData] = useState([])
     useEffect(() => {
         fetch("https://api.github.com/users/theabhisheksrivastav")
@@ -20,7 +20,7 @@ function Header() {
       </Navbar.Brand>
       <div className="flex md:order-2">
       <DarkThemeToggle className=" mr-2" />
-        {loggedIn ? (<Dropdown
+        {authService.getCurrentUser() ? (<Dropdown
           arrowIcon={false}
           inline
           label={
