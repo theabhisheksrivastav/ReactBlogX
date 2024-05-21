@@ -33,7 +33,7 @@ export class Service {
         }
     }
 
-    async updatePost( slug,{ title, content, status, userId, featuredImage }) {
+    async updatePost( slug,{ title, content, status, featuredImage }) {
         try {
             const post = await this.databases.updateDocument(
                 conf.appwriteDatabaseId,

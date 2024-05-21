@@ -3,8 +3,10 @@ import { useDispatch } from 'react-redux'
 import authService from "./appwrite/auth.service"
 import { login, logout} from "./store/authSlice"
 import './App.css'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from './components/Header.jsx'
+import FixedFooter from './components/FixedFooter.jsx'
+import { Outlet } from 'react-router-dom'
+import { Spinner } from 'flowbite-react'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -23,14 +25,21 @@ function App() {
     .finally(() => setLoading(false))
   }, [])
 
+  
 
-  return !loading && (
-    <div className="App">
+
+  return !loading ? (
+    <div className=" dark:bg-gray-800">
       <header className="App-header">
         <Header />
-        <h1>ReactBlogX</h1>
-        <Footer />
+        <Outlet />
+        <FixedFooter />
       </header>
+    </div>
+  )
+  : (
+    <div className="flex items-center justify-center h-screen text-center dark:bg-gray-800">
+        <Spinner size="xl" />
     </div>
   )
 }
