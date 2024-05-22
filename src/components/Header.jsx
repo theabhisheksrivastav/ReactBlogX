@@ -1,7 +1,13 @@
 import { Button, Avatar, Dropdown, Navbar, DarkThemeToggle, Flowbite } from "flowbite-react";
 import { NavLink, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { authService } from "../appwrite/auth.service.js";
+import store from "../store/store";
+import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { logout as authLogout } from '../store/authSlice'
+import { useNavigate } from 'react-router-dom';
+import authService from '../appwrite/auth.service';
+
 
 
 function Header() {
@@ -11,6 +17,22 @@ function Header() {
     .then(response => response.json())
     .then(data => setData(data))
     }, [])
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { register, handleSubmit } = useForm()
+
+    const logout = async(data) => {
+        try {
+            const session = await authService.logoutAccount(data)
+            if (session) {
+                const userData = await authService.getCurrentUser()
+                if(userData) dispatch(authLogout(userData));
+                navigate("/login")
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
   return (
     <Flowbite>
     <Navbar fluid >
@@ -20,7 +42,7 @@ function Header() {
       </Navbar.Brand>
       <div className="flex md:order-2">
       <DarkThemeToggle className=" mr-2" />
-        {authService.getCurrentUser() ? (<Dropdown
+        {!store.auth ? (<Dropdown
           arrowIcon={false}
           inline
           label={
@@ -35,7 +57,7 @@ function Header() {
           <Dropdown.Item>Settings</Dropdown.Item>
           <Dropdown.Item>Earnings</Dropdown.Item>
           <Dropdown.Divider />
-          <Dropdown.Item>Sign out</Dropdown.Item>
+          <Dropdown.Item onClick={handleSubmit(logout)}>Sign out</Dropdown.Item>
         </Dropdown>) : 
       //   (location.pathname === "/login" ? ( <Button outline gradientDuoTone="greenToBlue">
       //   "Hello!"
