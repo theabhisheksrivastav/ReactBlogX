@@ -42,7 +42,7 @@ function Header() {
       </Navbar.Brand>
       <div className="flex md:order-2">
       <DarkThemeToggle className=" mr-2" />
-        {!store.auth ? (<Dropdown
+        {store.auth ? (<Dropdown
           arrowIcon={false}
           inline
           label={

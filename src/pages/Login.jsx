@@ -1,12 +1,11 @@
-import React from 'react'
-import { Button, Card, Checkbox, Label, TextInput, Tooltip } from "flowbite-react";
-import { login } from '../store/authSlice';
+import { Button, Card, Checkbox, Label } from "flowbite-react";
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
 import { login as authLogin } from '../store/authSlice'
 import { useNavigate } from 'react-router-dom';
 import authService from '../appwrite/auth.service';
+import Input from '../components/Input';
+
 function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -36,22 +35,31 @@ function Login() {
                         <div className="mb-2 block">
                             <Label htmlFor="email1" value="Your email" />
                         </div>
-                        <TextInput id="email1" type="email" placeholder="name@reactblogx.com" {...register("email", {
+                        <Input
+                label="Email: "
+                placeholder="Enter your email"
+                type="email"
+                {...register("email", {
                     required: true,
                     validate: {
                         matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                         "Email address must be a valid address",
                     }
-                })} 
+                })}
                 />
                     </div>
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="password1" value="Your password" />
                         </div>
-                        <TextInput id="password1" type="password" {...register("password", {
+                        <Input
+                label="Password: "
+                type="password"
+                placeholder="Enter your password"
+                {...register("password", {
                     required: true,
-                })} />
+                })}
+                />
                     </div>
                     <div>
                         <div className="flex items-center gap-2">
