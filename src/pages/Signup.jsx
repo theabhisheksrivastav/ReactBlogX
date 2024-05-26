@@ -27,7 +27,7 @@ function Signup() {
     }
   return (
     <>
-    <div className="grid gap-6 md:grid-cols-2 md:justify-center dark:bg-gray-800 mt-10 mb-10">
+    <div className="grid gap-6 md:grid-cols-1 md:justify-center dark:bg-gray-800 mt-10 mb-10">
     <div className="flex justify-center">
             <Card className="flex grow max-w-sm dark:border-green-500">
                 <h1 className="text-center text-2xl font-semibold dark:text-green-500">Sign Up</h1>
