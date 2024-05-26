@@ -2,7 +2,7 @@ import { Button, Avatar, Dropdown, Navbar, DarkThemeToggle, Flowbite } from "flo
 import { NavLink, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import store from "../store/store";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { logout as authLogout } from '../store/authSlice'
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,7 @@ import authService from '../appwrite/auth.service';
 
 
 function Header() {
+  const authStatus = useSelector((state) => state.auth.status)
   const [data, setData] = useState([])
     useEffect(() => {
         fetch("https://api.github.com/users/theabhisheksrivastav")
@@ -42,7 +43,7 @@ function Header() {
       </Navbar.Brand>
       <div className="flex md:order-2">
       <DarkThemeToggle className=" mr-2" />
-        {store.auth ? (<Dropdown
+        {authStatus ? (<Dropdown
           arrowIcon={false}
           inline
           label={
