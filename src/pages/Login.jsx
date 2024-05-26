@@ -25,16 +25,16 @@ function Login() {
 
   return (
     <>
-        <div className="grid gap-6 md:grid-cols-2 md:justify-center dark:bg-gray-800 mt-10 mb-10">
+        <div className="grid gap-6 md:grid-cols-1 md:justify-center dark:bg-gray-800 mt-10 mb-10">
             <div className="flex justify-center">
             <Card className="flex grow max-w-sm dark:border-green-500 ">
                 <h1 className="text-center text-2xl font-semibold dark:text-green-500">Login</h1>
-                <form className="flex flex-col gap-4">
+                <form onSubmit={handleSubmit(login)} className="flex flex-col gap-4">
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="email1" value="Your email" />
                         </div>
-                        <TextInput id="email1" type="email" placeholder="name@reactblogx.com" {...register("email1", {
+                        <TextInput id="email1" type="email" placeholder="name@reactblogx.com" {...register("email", {
                     required: true,
                     validate: {
                         matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
@@ -47,13 +47,13 @@ function Login() {
                         <div className="mb-2 block">
                             <Label htmlFor="password1" value="Your password" />
                         </div>
-                        <TextInput id="password1" type="password" {...register("password1", {
+                        <TextInput id="password1" type="password" {...register("password", {
                     required: true,
                 })} />
                     </div>
                     <div>
                         <div className="flex items-center gap-2">
-                            <Link to="/sign-up"><Label htmlFor="signup"> Don&apos;t have any account?&nbsp;</Label></Link>
+                            <Link to="/sign-up"><Label htmlFor="signup" className="cursor-pointer"  > Don&apos;t have any account?&nbsp;</Label></Link>
                         </div>
                         {/* <div>
                             <Tooltip content="You need to login to post">
@@ -61,7 +61,7 @@ function Login() {
                             </Tooltip>
                         </div> */}
                     </div>
-                    <Button onClick={handleSubmit(login)} gradientMonochrome="success" type="submit">Login</Button>
+                    <Button gradientMonochrome="success" type="submit">Login</Button>
                 </form>
             </Card>
             </div>

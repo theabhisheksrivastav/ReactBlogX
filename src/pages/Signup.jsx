@@ -32,20 +32,20 @@ function Signup() {
             <Card className="flex grow max-w-sm dark:border-green-500">
                 <h1 className="text-center text-2xl font-semibold dark:text-green-500">Sign Up</h1>
                 {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-                <form className="flex flex-col gap-4">
+                <form onSubmit={handleSubmit(create)} className="flex flex-col gap-4">
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="name" value="Your Name"  />
                         </div>
-                        <TextInput id="name2" type="name" placeholder="Full Name" required  {...register("name2", {
+                        <TextInput id="name" type="name" placeholder="Full Name" required  {...register("name", {
                             required: true,
                         })} />
                     </div>
                     <div>
                         <div className="mb-2 block">
-                            <Label htmlFor="email2" value="Your email" />
+                            <Label htmlFor="email" value="Your email" />
                         </div>
-                        <TextInput id="email2" type="email" placeholder="name@reactblogx.com" required {...register("email2", {
+                        <TextInput id="email" type="email" placeholder="name@reactblogx.com" required {...register("email", {
                             required: true,
                             validate: {
                                 matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
@@ -55,12 +55,12 @@ function Signup() {
                     </div>
                     <div>
                         <div className="mb-2 block">
-                            <Label htmlFor="password2" value="Your password" />
+                            <Label htmlFor="password" value="Your password" />
                         </div>
-                        <TextInput id="password2" type="password" required {...register("password2", {
+                        <TextInput id="password" type="password" required {...register("password", {
                             required: true,})} />
                     </div>
-                    <Button onClick={handleSubmit(create)} gradientMonochrome="success" type="submit">Sign Up</Button>
+                    <Button gradientMonochrome="success" type="submit">Sign Up</Button>
                 </form>
             </Card>
             </div>
