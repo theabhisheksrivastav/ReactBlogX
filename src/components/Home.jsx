@@ -1,5 +1,6 @@
 import React from 'react'
 import { Carousel, Blockquote } from "flowbite-react";
+import AllPosts from '../pages/AllPosts';
 
 function Home() {
   return (
@@ -18,7 +19,7 @@ function Home() {
                 "Introducing Flowbite: A Tailwind CSS Component Library!"
             </Blockquote>
         </Carousel>
-        <h1>Home</h1>
+        <AllPosts/>
     </div>
   )
 }
