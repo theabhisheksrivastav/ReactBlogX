@@ -1,8 +1,7 @@
 
 import { Footer } from "flowbite-react";
 import { BsFacebook, BsGithub, BsInstagram, BsTwitter, BsLinkedin } from "react-icons/bs";
-import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 
 function FixedFooter() {
   return (
@@ -34,13 +33,6 @@ function FixedFooter() {
                 <Footer.Link href="https://abhisheksrivastav.site/">Portfolio</Footer.Link>
               </Footer.LinkGroup>
             </div>
-            {/* <div>
-              <Footer.Title title="Legal" />
-              <Footer.LinkGroup col>
-                <Footer.Link href="#">Privacy Policy</Footer.Link>
-                <Footer.Link href="#">Terms &amp; Conditions</Footer.Link>
-              </Footer.LinkGroup>
-            </div> */}
           </div>
         </div>
         <Footer.Divider />

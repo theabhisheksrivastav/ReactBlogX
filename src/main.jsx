@@ -5,30 +5,32 @@ import './index.css'
 import { Provider } from 'react-redux'
 import store from './store/store.js'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import Login from './pages/Login.jsx'
-import Test from './components/Test.jsx'
-import Home from './components/Home.jsx'
-import About from './components/About.jsx'
-import Signup from './pages/SignUp.jsx'
-
+import {Post, About, AuthLayout} from './components'
+import {Login, Home, EditPost, AddPost} from './pages'
 const router = createBrowserRouter(
   createRoutesFromElements([
     <Route path="/" element={<App />} >
-      <Route path="/" element={<Home/>} />
+      <Route path="/" element={<Home />} />
+      <Route path="post/:slug" element={<Post/>} />
       <Route path="about" element={<About/>} />
-      <Route path="post" element={<h1>Posts</h1>} />
-      <Route path="login" element={<Login/>} />
+      <Route path="new-post" element={<AuthLayout authentication>
+                    {" "}
+                    <AddPost />
+                </AuthLayout>} />
+      <Route path="login" element={<AuthLayout authentication={false}>
+                    <Login />
+                </AuthLayout>} />
       <Route path="contact" element={<h1>Contact</h1>} />
-      <Route path="test" element={<Test/>} />
-      <Route path="signup" element={<Signup/>} />
+      <Route path="edit-post/:slug" element={<AuthLayout authentication>
+                    {" "}
+                    <EditPost />
+                </AuthLayout>} />
     </Route>
   ]),
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router}/>
     </Provider>
-  </React.StrictMode>,
 )

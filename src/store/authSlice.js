@@ -4,7 +4,6 @@ const initialState = {
     status: false,
     user: null
 };
-
 const authSlice = createSlice({
     name: "auth",
     initialState,

@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import authService from "./appwrite/auth.service"
 import { login, logout} from "./store/authSlice"
-import './App.css'
-import Header from './components/Header.jsx'
-import FixedFooter from './components/FixedFooter.jsx'
 import { Outlet } from 'react-router-dom'
 import { Spinner } from 'flowbite-react'
+import { Header, FixedFooter } from './components'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -31,9 +29,9 @@ function App() {
   return !loading ? (
     <div className=" dark:bg-gray-800">
       <header className="App-header">
-        <Header />
+      <Header />
         <Outlet />
-        <FixedFooter />
+      <FixedFooter />
       </header>
     </div>
   )
