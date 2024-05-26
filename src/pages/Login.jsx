@@ -90,7 +90,7 @@ function Login() {
                         <div className="mb-2 block">
                             <Label htmlFor="name" value="Your Name"  />
                         </div>
-                        <TextInput id="name" type="name" placeholder="Full Name" required  {...register("name", {
+                        <TextInput id="name2" type="name" placeholder="Full Name" required  {...register("name2", {
                             required: true,
                         })} />
                     </div>
