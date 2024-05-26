@@ -50,7 +50,7 @@ function Login() {
                         <div className="mb-2 block">
                             <Label htmlFor="email1" value="Your email" />
                         </div>
-                        <TextInput id="email1" type="email" placeholder="name@reactblogx.com" {...register("email", {
+                        <TextInput id="email1" type="email" placeholder="name@reactblogx.com" {...register("email1", {
                     required: true,
                     validate: {
                         matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
@@ -63,7 +63,7 @@ function Login() {
                         <div className="mb-2 block">
                             <Label htmlFor="password1" value="Your password" />
                         </div>
-                        <TextInput id="password1" type="password" {...register("password", {
+                        <TextInput id="password1" type="password" {...register("password1", {
                     required: true,
                 })} />
                     </div>
@@ -98,7 +98,7 @@ function Login() {
                         <div className="mb-2 block">
                             <Label htmlFor="email2" value="Your email" />
                         </div>
-                        <TextInput id="email2" type="email" placeholder="name@reactblogx.com" required {...register("email", {
+                        <TextInput id="email2" type="email" placeholder="name@reactblogx.com" required {...register("email2", {
                             required: true,
                             validate: {
                                 matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
@@ -110,7 +110,7 @@ function Login() {
                         <div className="mb-2 block">
                             <Label htmlFor="password2" value="Your password" />
                         </div>
-                        <TextInput id="password2" type="password" required {...register("password", {
+                        <TextInput id="password2" type="password" required {...register("password2", {
                             required: true,})} />
                     </div>
                     <Button onClick={handleSubmit(create)} gradientMonochrome="success" type="submit">Sign Up</Button>
