@@ -16,7 +16,8 @@ function Home() {
     console.log(userData)
   return (
     <>
-    {/* Add sliding carosouls with featured images and titles */}
+    {/* Add sliding carosouls with featured images and titles 
+    Also make the cards better optimized also no indication when somthing is working no animation is there*/}
     <div className='w-full p-8'>
             <div className="p-9 pt-6 pb-5 m-10">
                 {posts.map((post) => (

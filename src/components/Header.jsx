@@ -14,7 +14,9 @@ function Header() {
         })
     }
   return (
+    
     <Flowbite>
+    {/* add longer logo for when big screen view port refactor sign out button */}
     <Navbar fluid >
       <Navbar.Brand href={import.meta.env.VITE_DOMAIN}>
         <img src="/symbol.png" className="min-w-6 min-h-10 mr-3 h-6 sm:h-9" alt="ReactXBlog" />

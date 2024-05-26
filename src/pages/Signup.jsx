@@ -27,6 +27,7 @@ function Signup() {
     }
   return (
     <>
+    {/* Add animation for when submition  */}
     <div className="grid gap-6 md:grid-cols-1 md:justify-center dark:bg-gray-800 mt-10 mb-10">
     <div className="flex justify-center">
             <Card className="flex grow max-w-sm dark:border-green-500">

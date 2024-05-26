@@ -21,6 +21,7 @@ function EditPost() {
     }, [slug, navigate])
   return post ? (
     <div className='py-8'>
+        {/* disable submit button once pressed until res as multiple file uploaded add image compression */}
         <Container>
             <PostForm post={post} />
         </Container>
