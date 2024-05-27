@@ -1,11 +1,12 @@
-
 import { Footer } from "flowbite-react";
 import { BsFacebook, BsGithub, BsInstagram, BsTwitter, BsLinkedin } from "react-icons/bs";
 import { Link} from 'react-router-dom'
 
 function FixedFooter() {
   return (
-    <Footer container>
+    <>
+      <div className=" inset-x-0 bottom-0">
+      <Footer container>
       <div className="w-full">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
           <div>
@@ -48,6 +49,8 @@ function FixedFooter() {
           </div>
       </div>
     </Footer>
+      </div>
+    </>
   );
 }
 

@@ -6,10 +6,9 @@ function PostCard({$id, title, featuredImg}) {
   return (
     <Link to={`/post/${$id}`}>
       <Card
-      className="max-w-sm"
+      className="grid grid-cols-2 object-contain"
       imgAlt={title}
       imgSrc={appwriteService.getFilePreview(featuredImg)}
-      className="w-full object-contain"
       >
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title}

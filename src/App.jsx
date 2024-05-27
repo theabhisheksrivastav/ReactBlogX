@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import authService from "./appwrite/auth.service"
 import { login, logout} from "./store/authSlice"
@@ -28,11 +28,9 @@ function App() {
 
   return !loading ? (
     <div className=" dark:bg-gray-800">
-      <header className="App-header">
       <Header />
         <Outlet />
       <FixedFooter />
-      </header>
     </div>
   )
   : (

@@ -15,7 +15,9 @@ function Header() {
     }
   return (
     
-    <Flowbite>
+    <>
+      <div className="inset-x-0 top-0">
+      <Flowbite>
     {/* add longer logo for when big screen view port refactor sign out button */}
     <Navbar fluid >
       <Navbar.Brand href={import.meta.env.VITE_DOMAIN}>
@@ -71,6 +73,8 @@ function Header() {
       </Navbar.Collapse>
     </Navbar>
     </Flowbite>
+      </div>
+    </>
   );
 }
 
