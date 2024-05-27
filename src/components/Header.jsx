@@ -6,7 +6,6 @@ import authService from '../appwrite/auth.service';
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status)
-  const userData = useSelector((state) => state.auth.user)
     const dispatch = useDispatch()
     const logoutHandler = () => {
         authService.logoutAccount().then(() => {

@@ -12,9 +12,11 @@ function Signup() {
     const dispatch = useDispatch()
     const { register, handleSubmit } = useForm()
     const [error, setError] = useState("")
+    const [buttonText, setButtonText] = useState("Sign Up");
     const create = async(data) => {
         setError("")
         try {
+            setButtonText("Creating account...")
             const userData = await authService.createAccount(data)
             if (userData) {
                 const userData = await authService.getCurrentUser()
@@ -23,11 +25,12 @@ function Signup() {
             }
         } catch (error) {
             setError(error.message)
+        } finally {
+            setButtonText("Sign Up")
         }
     }
   return (
     <>
-    {/* Add animation for when submition  */}
     <div className="grid gap-6 md:grid-cols-1 md:justify-center dark:bg-gray-800 mt-10 mb-10">
     <div className="flex justify-center">
             <Card className="flex grow max-w-sm dark:border-green-500">
@@ -61,7 +64,7 @@ function Signup() {
                         <TextInput id="password" type="password" required {...register("password", {
                             required: true,})} />
                     </div>
-                    <Button gradientMonochrome="success" type="submit">Sign Up</Button>
+                    <Button gradientMonochrome="success" type="submit">{buttonText}</Button>
                 </form>
             </Card>
             </div>

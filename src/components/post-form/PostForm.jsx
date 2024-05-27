@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Input, RTE, Select } from "..";
+import { Input, RTE } from "..";
+import { Button } from "flowbite-react";
 import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -17,37 +18,44 @@ export default function PostForm({ post }) {
 
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
+    const [isSubmitting, setIsSubmitting] = React.useState(false);
 
     const submit = async (data) => {
-        console.log(data);
-        if (post) {
-            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
-
-            if (file) {
-                appwriteService.deleteFile(post.featuredImg);
-            }
-
-            const dbPost = await appwriteService.updatePost(post.$id, {
-                ...data,
-                featuredImg: file ? file.$id : undefined,
-            });
-
-            if (dbPost) {
-                navigate(`/post/${dbPost.$id}`);
-            }
-        } else {
-            const file = await appwriteService.uploadFile(data.image[0]);
-
-            if (file) {
-                const fileId = file.$id;
-                data.featuredImg = fileId;
-                const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
-
-                if (dbPost) {
-                    navigate(`/post/${dbPost.$id}`);
-                }
-            }
-        }
+       try {
+         setIsSubmitting(true);
+         if (post) {
+             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+ 
+             if (file) {
+                 appwriteService.deleteFile(post.featuredImg);
+             }
+ 
+             const dbPost = await appwriteService.updatePost(post.$id, {
+                 ...data,
+                 featuredImg: file ? file.$id : undefined,
+             });
+ 
+             if (dbPost) {
+                 navigate(`/post/${dbPost.$id}`);
+             }
+         } else {
+             const file = await appwriteService.uploadFile(data.image[0]);
+ 
+             if (file) {
+                 const fileId = file.$id;
+                 data.featuredImg = fileId;
+                 const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
+ 
+                 if (dbPost) {
+                     navigate(`/post/${dbPost.$id}`);
+                 }
+             }
+         }
+       } catch (error) {
+        console.log(error)
+       } finally{
+        setIsSubmitting(false)
+       }
         
     };
 
@@ -110,7 +118,7 @@ export default function PostForm({ post }) {
                     </div>
                 )}
 
-                <Button type="submit" className="w-full bg-green-500">
+                <Button disabled={isSubmitting} type="submit" className="w-full bg-green-500">
                     {post ? "Update" : "Submit"}
                 </Button>
             </div>

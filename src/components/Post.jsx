@@ -39,7 +39,7 @@ export default function Post() {
                 <div className="w-full mb-6">
                     <h1 className="text-5xl font-bold text-center text-green-700">{post.title}</h1>
                 </div>
-                <div className="browser-css dark:text-green-300">
+                <div className="browser-css ml-12 mt-8 mb-8 dark:text-gray-600">
                     {parse(post.content)}
                 </div>
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
