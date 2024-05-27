@@ -6,7 +6,7 @@ import authService from '../appwrite/auth.service';
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status)
-  const userData = useSelector((state) => state.auth.userData)
+  const userData = useSelector((state) => state.auth.user)
     const dispatch = useDispatch()
     const logoutHandler = () => {
         authService.logoutAccount().then(() => {
@@ -26,23 +26,8 @@ function Header() {
       </Navbar.Brand>
       <div className="flex md:order-2">
       <DarkThemeToggle className=" mr-2" />
-        {authStatus ? (<Dropdown
-          arrowIcon={false}
-          inline
-          label={
-            <Avatar placeholderInitials={userData?.name.charAt(0)} rounded />
-          }
-        >
-          <Dropdown.Header>
-            <span className="block text-sm">{userData?.name}</span>
-            <span className="block truncate text-sm font-medium">{userData?.email}</span>
-          </Dropdown.Header>
-          {/* <Link to="/my-post"><Dropdown.Item>My Posts</Dropdown.Item></Link>
-          <Link to="/setting"><Dropdown.Item>Settings</Dropdown.Item></Link> */}
-          <Dropdown.Divider />
-          <Dropdown.Item onClick={logoutHandler}>Sign out</Dropdown.Item>
-        </Dropdown>) : 
-      (<Link to="/login" ><Button gradientMonochrome="success">Login / Sign Up</Button></Link>)}
+        {authStatus ? (<Link to="/login" ><Button onClick={logoutHandler} outline gradientMonochrome="success">Logout</Button></Link>) : 
+      (<Link to="/login" ><Button gradientMonochrome="success">Login</Button></Link>)}
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>

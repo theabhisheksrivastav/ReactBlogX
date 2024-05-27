@@ -4,14 +4,17 @@ import { useForm } from 'react-hook-form';
 import { login as authLogin } from '../store/authSlice'
 import { Link, useNavigate } from 'react-router-dom';
 import authService from '../appwrite/auth.service';
+import { useState } from 'react';
 
 function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { register, handleSubmit } = useForm()
+    const [buttonText, setButtonText] = useState("Login");
 
     const login = async(data) => {
         try {
+            setButtonText("Logging in...")
             const session = await authService.loginAccount(data)
             if (session) {
                 const userData = await authService.getCurrentUser()
@@ -20,6 +23,8 @@ function Login() {
             }
         } catch (error) {
             console.log(error)
+        } finally {
+            setButtonText("Login")
         }
     }
 
@@ -62,7 +67,7 @@ function Login() {
                             </Tooltip>
                         </div> */}
                     </div>
-                    <Button gradientMonochrome="success" type="submit">Login</Button>
+                    <Button gradientMonochrome="success" type="submit">{buttonText}</Button>
                 </form>
             </Card>
             </div>
