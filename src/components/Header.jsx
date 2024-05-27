@@ -1,17 +1,24 @@
-import { Button, Avatar, Dropdown, Navbar, DarkThemeToggle, Flowbite } from "flowbite-react";
+import { Button, Navbar, DarkThemeToggle, Flowbite } from "flowbite-react";
 import { NavLink, Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout as authLogout } from '../store/authSlice'
 import authService from '../appwrite/auth.service';
+import { useEffect, useState } from "react";
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status)
     const dispatch = useDispatch()
+    const [logoimg, setLogoimg] = useState('/symbol.png')
     const logoutHandler = () => {
         authService.logoutAccount().then(() => {
             dispatch(authLogout())
         })
     }
+    useEffect(() => {
+      if (window.innerWidth > 540) {
+        setLogoimg('/logo.png');
+      }
+    }, [])
   return (
     
     <>
@@ -20,7 +27,7 @@ function Header() {
     {/* add longer logo for when big screen view port refactor sign out button */}
     <Navbar fluid >
       <Navbar.Brand href={import.meta.env.VITE_DOMAIN}>
-        <img src="/symbol.png" className="min-w-6 min-h-10 mr-3 h-6 sm:h-9" alt="ReactXBlog" />
+        <img src={logoimg} className="min-w-6 min-h-10 mr-3 h-6 sm:h-9" alt="ReactXBlog" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white"></span>
       </Navbar.Brand>
       <div className="flex md:order-2">
